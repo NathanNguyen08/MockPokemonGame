@@ -1,0 +1,1 @@
+# Pokemon Battles (Keeps code less cluttered)
