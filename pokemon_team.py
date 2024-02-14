@@ -1,5 +1,6 @@
 # Pokemon Team Module 
 
+# Pokemon 
 class Pokemon():
 
     def __init__ (self, id, name, type, description, moves):
@@ -9,7 +10,7 @@ class Pokemon():
         self.description = description
         self.moves = moves
 
-
-
+# Bag 
+bag = {"Pokeballs": 0, "Potions": 0}
 
 
