@@ -1,8 +1,9 @@
 # Pokemon Game??? 
 
 # Imports 
+from random import randint
 from pokemon_team import Pokemon
-from pokedex import pokedex_list
+from pokedex import pokedex_list, route_pokemon
 from pokemon_team import bag
 
 # Initialize Variables 
@@ -68,10 +69,23 @@ def shop():
             error_message()
 
 
-
 # Route 1
 def route_1():
-    pass
+    # Each tile has a number that affects the chance of finding a wild Pokémon. 
+    # Tall grass varies from 15 to 25 (except the Safari Zone, which has 30), 
+    # the game generates a random number from 0 to 255 (inclusive). 
+    # If that random number is less than the tile's encounter number, the game generates a species and level.
+    encounter_found = False
+
+    while not encounter_found:
+        tile_prob = randint(15, 25)
+        encounter_prob = randint(0, 255)
+        if encounter_prob >= tile_prob:
+            input("Walking through the grass... ")
+        elif encounter_prob < tile_prob:
+            user_encounter = route_pokemon("Route 1")
+            input(f'You encountered a {user_encounter.name}! ')
+            continue
 
 
 # Pallet Town 
@@ -107,7 +121,8 @@ def error_message():
 if __name__ == "__main__":
     # introduction_cutscene()
     # user_pokemon_1 = i_choose_you()
-    pallet_town()
+    # pallet_town()
+    route_1()
 
         
 
