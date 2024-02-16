@@ -5,6 +5,7 @@ from random import randint
 from pokemon_team import Pokemon
 from pokedex import pokedex_list, route_pokemon
 from pokemon_team import bag
+from pokemon_battle import battle
 
 # Initialize Variables 
 
@@ -16,20 +17,21 @@ def introduction_cutscene():
 
 # Choose Starter Pokemon
 def i_choose_you():
-    starter_Pokemon = False
-    while not starter_Pokemon:
-        starter = input("Choose your starter [CHARMANDER] [BULBASAUR] [SQUIRTLE] ")
+    starter_Pokemon_acquired = False
+    while not starter_Pokemon_acquired:
+        starter = input("Choose your starter [CHARMANDER] [BULBASAUR] [SQUIRTLE] ").capitalize()
 
-        if starter not in pokedex_list:
-            error_message()
-            continue
+        try:
+            for entry in pokedex_list:  # Checks every Pokemon in Pokedex (List of all Pokemon)
+                if starter == entry.name: #
+                    print(f'You chose the {entry.type}y Pokemon {entry.name}!!')
+                    print("Now go out and explore the wonderful world of POKEMONN")
+                    starter_Pokemon_acquired = True
+                    return Pokemon(entry.ID, entry.name, entry.type, entry.description, entry.moves) # Creates Pokemon Object with the right settings 
+            raise Exception # Raises exception if a Pokemon isn't found in Pokedex and object not created
+        except Exception:
+            error_statement()
 
-        for entry in pokedex_list:  # Checks every Pokemon in Pokedex
-            if starter.capitalize() == entry.name:
-                print(f'You chose the {entry.type}y Pokemon {entry.name}!!')
-                print("Now go out and explore the wonderful world of POKEMONN")
-                starter_Pokemon = True
-                return Pokemon(entry.ID, entry.name, entry.type, entry.description, entry.moves)  # Creates Pokemon Object with the right settings     
 
 # Home Function
 def home(shoes_aquired):
@@ -50,41 +52,38 @@ def shop():
     while shopKey:
         item = input("What would you like to buy today? [POKEBALLS] [POTIONS] ").capitalize()
 
-        if item not in bag:
-            error_message()
+        if item not in bag: # Error statement for when item can't be found
+            error_statement()
             continue
 
-        for item_name, item_count in bag.items():
-            if item == item_name:
+        for item_name, item_count in bag.items(): # bag = {"Pokeballs": 0, "Potions": 0}
+            if item == item_name: # Basically finds the item name in the dictionary 
                 item_count += 1
                 bag.update({item_name: item_count})
                 print(f'PURCHASED x1 {item_name.upper()}')  # Maybe let users buy multiple ? 
-
+            
         continue_shopping = input("Would you like to continue shopping? ").lower()
+
         if continue_shopping == "yes":
             continue 
         elif continue_shopping == "no":
-            break
+            shopKey = False
         else:
-            error_message()
+            error_statement()
 
 
 # Route 1
 def route_1():
-    # Each tile has a number that affects the chance of finding a wild Pokémon. 
-    # Tall grass varies from 15 to 25 (except the Safari Zone, which has 30), 
-    # the game generates a random number from 0 to 255 (inclusive). 
-    # If that random number is less than the tile's encounter number, the game generates a species and level.
     encounter_found = False
 
     while not encounter_found:
-        tile_prob = randint(15, 25)
+        tile_prob = randint(15, 25) 
         encounter_prob = randint(0, 255)
         if encounter_prob >= tile_prob:
             input("Walking through the grass... ")
         elif encounter_prob < tile_prob:
-            user_encounter = route_pokemon("Route 1")
-            input(f'You encountered a {user_encounter.name}! ')
+            user_encounter = route_pokemon("Route 1") # Makes this into a Pokemon Object
+            battle("name")
             continue
 
 
@@ -96,7 +95,8 @@ def pallet_town():
 
     while pallet_town:
         user_option = input("\nWhere would you like to go? [HOME] [SHOP] [ROUTE1] ").capitalize()
-        if user_option in pallet_town_options:
+
+        try:
             if user_option == "Home":
                 running_shoes = home(been_to_mom_house)
                 been_to_mom_house = True
@@ -105,6 +105,10 @@ def pallet_town():
             elif user_option == "Route1":
                 route_1()
                 pallet_town = False
+            else: 
+                raise Exception
+        except Exception:
+            error_statement()
 
 
 # Pokemon Battle
@@ -113,16 +117,16 @@ def battle():
 
 
 # Error Statement
-def error_message():
-    input("Error. Invalid Input.\n")
+def error_statement():
+    input("Error. Invalid Input. ")
 
 
 # If name is main
 if __name__ == "__main__":
     # introduction_cutscene()
     # user_pokemon_1 = i_choose_you()
-    # pallet_town()
-    route_1()
+    pallet_town()
+    # route_1()
 
         
 
