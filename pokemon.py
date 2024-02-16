@@ -4,8 +4,9 @@
 from random import randint
 from pokemon_team import Pokemon
 from pokedex import pokedex_list, route_pokemon
-from pokemon_team import bag
+from pokemon_team import bag, user_team
 from pokemon_battle import battle
+from pokemon_general_commands import error_statement
 
 # Initialize Variables 
 
@@ -27,7 +28,7 @@ def i_choose_you():
                     print(f'You chose the {entry.type}y Pokemon {entry.name}!!')
                     print("Now go out and explore the wonderful world of POKEMONN")
                     starter_Pokemon_acquired = True
-                    return Pokemon(entry.ID, entry.name, entry.type, entry.description, entry.moves) # Creates Pokemon Object with the right settings 
+                    return Pokemon(entry.ID, entry.name, entry.type, entry.description, entry.moves, entry.stats) # Creates Pokemon Object with the right settings 
             raise Exception # Raises exception if a Pokemon isn't found in Pokedex and object not created
         except Exception:
             error_statement()
@@ -77,13 +78,15 @@ def route_1():
     encounter_found = False
 
     while not encounter_found:
-        tile_prob = randint(15, 25) 
+        # tile_prob = randint(15, 25) 
+        # encounter_prob = randint(0, 255)
+        tile_prob = randint(500, 1000) 
         encounter_prob = randint(0, 255)
         if encounter_prob >= tile_prob:
             input("Walking through the grass... ")
         elif encounter_prob < tile_prob:
             user_encounter = route_pokemon("Route 1") # Makes this into a Pokemon Object
-            battle("name")
+            battle(user_encounter)
             continue
 
 
@@ -111,22 +114,15 @@ def pallet_town():
             error_statement()
 
 
-# Pokemon Battle
-def battle():
-    pass
-
-
-# Error Statement
-def error_statement():
-    input("Error. Invalid Input. ")
-
-
 # If name is main
 if __name__ == "__main__":
     # introduction_cutscene()
-    # user_pokemon_1 = i_choose_you()
+    global user_pokemon_1
+    user_pokemon_1 = i_choose_you()
+    user_team.append(user_pokemon_1)
     pallet_town()
     # route_1()
+    print("End code for now")
 
         
 

@@ -1,16 +1,47 @@
 # Pokedex Module (NamedTuple just kidding)
 
+# Imports
 from collections import namedtuple
 from random import randrange
 from pokemon_team import Pokemon
 
-Pokemon_entry = namedtuple("Pokemon_entry", "ID name type description moves")
+Pokemon_entry = namedtuple("Pokemon_entry", "ID name type description moves stats")
 
-Bulbasaur = Pokemon_entry(ID="001", name="Bulbasaur", type="Grass", description="Grass mon", moves=["Tackle", "Growl", "Vine Whip", None])
-Charmander = Pokemon_entry(ID="004", name="Charmander", type="Fire", description="Fire mon", moves=["Scratch", "Growl", "Ember", None]) 
-Squirtle = Pokemon_entry(ID="007", name="Squirtle", type="Water", description="Water mon", moves=["Tackle", "Tail Whip", "Water Gun", None])
-Pidgey = Pokemon_entry(ID="016", name="Pidgey", type="Normal", description="Normal and Flying mon", moves=["Tackle", "Tail Whip", "Quick Attack", None])
-Ratata = Pokemon_entry(ID="019", name="Ratata", type="Normal", description="Normal mon", moves=["Tackle", "Sand Attack", "Gust", "Quick Attack"])
+Bulbasaur = Pokemon_entry(
+    ID="001",
+    name="Bulbasaur",
+    type="Grass",
+    description="Grass mon",
+    moves=["Tackle", "Growl", "Vine Whip", None],
+    stats={"HP": 105, "SPD":45})
+Charmander = Pokemon_entry(
+    ID="004",
+    name="Charmander",
+    type="Fire",
+    description="Fire mon",
+    moves=["Scratch", "Growl", "Ember", None],
+    stats={"HP": 99, "SPD":65})
+Squirtle = Pokemon_entry(
+    ID="007",
+    name="Squirtle",
+    type="Water",
+    description="Water mon",
+    moves=["Tackle", "Tail Whip", "Water Gun", None],
+    stats={"HP": 104, "SPD":43})
+Pidgey = Pokemon_entry(
+    ID="016",
+    name="Pidgey",
+    type="Normal",
+    description="Normal and Flying mon",
+    moves=["Tackle", "Tail Whip", "Quick Attack", None],
+    stats={"HP": 100, "SPD":54})
+Ratata = Pokemon_entry(
+    ID="019",
+    name="Ratata",
+    type="Normal",
+    description="Normal mon",
+    moves=["Tackle", "Sand Attack", "Gust", "Quick Attack"],
+    stats={"HP": 90, "SPD":72})
 
 pokedex_list = [Bulbasaur, Charmander, Squirtle, Pidgey, Ratata]
 
@@ -37,4 +68,4 @@ def route_pokemon(user_route_number):
 def initialize_pokemon(pokemon_name):
     for entry in pokedex_list:
         if entry.name == pokemon_name:
-            return Pokemon(entry.ID, entry.name, entry.type, entry.description, entry.moves)  # Creates Pokemon Object with the right settings     
+            return Pokemon(entry.ID, entry.name, entry.type, entry.description, entry.moves, entry.stats)  # Creates Pokemon Object with the right settings     
