@@ -43,9 +43,14 @@ Ratata = Pokemon_entry(
     moves=["Tackle", "Sand Attack", "Gust", "Quick Attack"],
     stats={"HP": 90, "SPD":72})
 
+
+# Containers of stuff 
 pokedex_list = [Bulbasaur, Charmander, Squirtle, Pidgey, Ratata]
-moves_dictionary = {"TACKLE": 20, "GROWL": .15, "VINE WHIP": 30, "EMBER":30, "WATER GUN": 30, 
+moves_dict = {"TACKLE": 20, "GROWL": .15, "VINE WHIP": 30, "EMBER":30, "WATER GUN": 30, 
                     "TAIL WHIP": .15, "QUICK ATTACK": 20, "GUST": 30, "SAND ATTACK": .15} # Quick Attack
+health_items_dict = {"POTION": 20, "SUPER POTION": 60, "HYPER POTION": 150}
+catch_items_dict = {"POKE BALL": 5, "GREAT BALL": 7, "ULTRA BALL": 9}
+
 
 # Prints Pokedex 
 def read_pokedex():

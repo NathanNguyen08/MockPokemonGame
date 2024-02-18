@@ -13,9 +13,11 @@ class Pokemon():
 
 
 # Bag 
-bag = {"Pokeballs": 0, "Potions": 0}
+bag = {"POKEBALL": 0, "POTION": 0}
+
+def bag_contents():
+    for item_name, item_count in bag.items():
+        print(f'{item_count} {item_name}(s)')
 
 # User Pokemon Team
 user_team = []
-
-

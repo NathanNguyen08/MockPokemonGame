@@ -22,16 +22,16 @@ def i_choose_you():
     while not starter_Pokemon_acquired:
         starter = input("Choose your starter [CHARMANDER] [BULBASAUR] [SQUIRTLE] ").capitalize()
 
-        try:
-            for entry in pokedex_list:  # Checks every Pokemon in Pokedex (List of all Pokemon)
-                if starter == entry.name: #
-                    print(f'You chose the {entry.type}y Pokemon {entry.name}!!')
-                    print("Now go out and explore the wonderful world of POKEMONN")
-                    starter_Pokemon_acquired = True
-                    return Pokemon(entry.ID, entry.name, entry.type, entry.description, entry.moves, entry.stats) # Creates Pokemon Object with the right settings 
-            raise Exception # Raises exception if a Pokemon isn't found in Pokedex and object not created
-        except Exception:
-            error_statement()
+        # try:
+        for entry in pokedex_list:  # Checks every Pokemon in Pokedex (List of all Pokemon)
+            if starter == entry.name: #
+                print(f'You chose the {entry.type}y Pokemon {entry.name}!!')
+                print("Now go out and explore the wonderful world of POKEMONN")
+                starter_Pokemon_acquired = True
+                return Pokemon(entry.ID, entry.name, entry.type, entry.description, entry.moves, entry.stats) # Creates Pokemon Object with the right settings 
+        #     raise Exception # Raises exception if a Pokemon isn't found in Pokedex and object not created
+        # except Exception:
+        #     error_statement()
 
 
 # Home Function
@@ -69,8 +69,8 @@ def shop():
             continue 
         elif continue_shopping == "no":
             shopKey = False
-        else:
-            error_statement()
+        # else:
+        #     error_statement()
 
 
 # Route 1
@@ -99,19 +99,19 @@ def pallet_town():
     while pallet_town:
         user_option = input("\nWhere would you like to go? [HOME] [SHOP] [ROUTE1] ").capitalize()
 
-        try:
-            if user_option == "Home":
-                running_shoes = home(been_to_mom_house)
-                been_to_mom_house = True
-            elif user_option == "Shop":
-                shop()
-            elif user_option == "Route1":
-                route_1()
-                pallet_town = False
-            else: 
-                raise Exception
-        except Exception:
-            error_statement()
+        # try:
+        if user_option == "Home":
+            running_shoes = home(been_to_mom_house)
+            been_to_mom_house = True
+        elif user_option == "Shop":
+            shop()
+        elif user_option == "Route1":
+            route_1()
+            pallet_town = False
+            # else: 
+            #     raise Exception
+        # except Exception:
+        #     error_statement()
 
 
 # If name is main
