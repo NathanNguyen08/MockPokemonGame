@@ -44,8 +44,8 @@ Ratata = Pokemon_entry(
     stats={"HP": 90, "SPD":72})
 
 pokedex_list = [Bulbasaur, Charmander, Squirtle, Pidgey, Ratata]
-moves_dictionary = {"Tackle": 20, "Growl": .15, "Vine Whip": 30, "Ember":30, "Water Gun": 30, 
-                    "Tail Whip": .15, "Quick Attack": 20, "Gust": 30,"Sand Attack": .15}
+moves_dictionary = {"TACKLE": 20, "GROWL": .15, "VINE WHIP": 30, "EMBER":30, "WATER GUN": 30, 
+                    "TAIL WHIP": .15, "QUICK ATTACK": 20, "GUST": 30, "SAND ATTACK": .15} # Quick Attack
 
 # Prints Pokedex 
 def read_pokedex():
