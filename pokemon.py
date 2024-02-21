@@ -8,12 +8,24 @@ from pokemon_team import bag, user_team
 from pokemon_battle import battle
 from pokemon_general_commands import error_statement
 
-# Initialize Variables 
+# Initialize Variables
+
 
 # Introduction 
 def introduction_cutscene():
     print("Hello there!\nWelcome to the world of POKEMON ")
     # What is your name, gender
+
+
+# Saves Pokemon to a file
+def pokemon_team_file(pokemon_class):
+    pokemon_hp = pokemon_class.stats["HP"]
+    file = open("pokemon_team_file", "a")
+    file.write(f'{pokemon_class.name} - {pokemon_hp}/{pokemon_hp} HP\n')
+    file.close()
+
+
+# Load Save File Option 
 
 
 # Choose Starter Pokemon
@@ -27,8 +39,10 @@ def i_choose_you():
             if starter == entry.name: #
                 print(f'You chose the {entry.type}y Pokemon {entry.name}!!')
                 print("Now go out and explore the wonderful world of POKEMONN")
+                starter_pokemon = Pokemon(entry.ID, entry.name, entry.type, entry.description, entry.moves, entry.stats)
+                pokemon_team_file(starter_pokemon)
                 starter_Pokemon_acquired = True
-                return Pokemon(entry.ID, entry.name, entry.type, entry.description, entry.moves, entry.stats) # Creates Pokemon Object with the right settings 
+                return starter_pokemon # Creates Pokemon Object with the right settings 
         #     raise Exception # Raises exception if a Pokemon isn't found in Pokedex and object not created
         # except Exception:
         #     error_statement()
@@ -117,7 +131,7 @@ def pallet_town():
 # If name is main
 if __name__ == "__main__":
     # introduction_cutscene()
-    global user_pokemon_1
+    total_pokemon = 0
     user_pokemon_1 = i_choose_you()
     user_team.append(user_pokemon_1)
     pallet_town()
