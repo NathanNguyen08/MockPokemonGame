@@ -13,7 +13,7 @@ class Pokemon():
 
 
 # Bag 
-bag = {"POKEBALL": 0, "POTION": 0}
+bag = {"POKEBALL": 5555, "POTION": 5555}
 
 def bag_contents():
     for item_name, item_count in bag.items():

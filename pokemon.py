@@ -19,13 +19,17 @@ def introduction_cutscene():
 
 # Saves Pokemon to a file
 def pokemon_team_file(pokemon_class):
-    pokemon_hp = pokemon_class.stats["HP"]
-    file = open("pokemon_team_file", "a")
-    file.write(f'{pokemon_class.name} - {pokemon_hp}/{pokemon_hp} HP\n')
+    pokemon_max_hp = pokemon_class.stats["MAX HP"]
+    pokemon_CURRENT_hp = pokemon_class.stats["CURRENT HP"]
+
+    file = open("pokemon_team_file.txt", "a")
+    file.write(f'{pokemon_class.name} - {pokemon_max_hp}/{pokemon_CURRENT_hp} HP\n')
     file.close()
 
 
 # Load Save File Option 
+def load_team_file(pokemon_file):
+    pass # WIP 
 
 
 # Choose Starter Pokemon
@@ -101,7 +105,7 @@ def route_1():
         elif encounter_prob < tile_prob:
             user_encounter = route_pokemon("Route 1") # Makes this into a Pokemon Object
             battle(user_encounter)
-            continue
+            encounter_found = True
 
 
 # Pallet Town 
@@ -134,8 +138,8 @@ if __name__ == "__main__":
     total_pokemon = 0
     user_pokemon_1 = i_choose_you()
     user_team.append(user_pokemon_1)
-    pallet_town()
-    # route_1()
+    # pallet_town()
+    route_1()
     print("End code for now")
 
         
